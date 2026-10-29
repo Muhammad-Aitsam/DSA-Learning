@@ -1,1 +1,66 @@
 
+A linked list is a data structure in which elements (called nodes) are stored in different places in memory, and each node stores the address (pointer) of the next node. Unlike an array, it does not need continuous memory.
+
+Structure of a node
+
+Each node has two parts:
+
+Data: the value to be stored
+Next: a pointer to the next node
+[10 | •]──►[20 | •]──►[30 | •]──►NULL
+ head
+
+The first node is called the head. The last node’s next is NULL, which marks the end of the list.
+
+Simple C++ example
+
+cpp
+struct Node {
+    int data;
+    Node* next;
+};
+
+Node* head = new Node{10, nullptr};
+head->next = new Node{20, nullptr};
+head->next->next = new Node{30, nullptr};
+
+Types of linked lists
+
+Singly linked list: each node points only to the next node.
+Doubly linked list: each node has both next and prev pointers, so you can traverse in both directions.
+Circular linked list: the last node points back to the head.
+
+Array vs Linked list
+
+	Array	Linked List
+Memory	Continuous	Scattered
+Size	Fixed (usually)	Dynamic, grows/shrinks easily
+Access by index	O(1)	O(n)
+Insert/Delete (beginning)	O(n)	O(1)
+Extra memory	None	Needed for pointers
+
+Advantages
+
+Insertion and deletion are easy, since elements don’t need to be shifted.
+Size can change at runtime.
+
+Disadvantages
+
+No random access. To reach the 5th element, you have to walk 5 steps from the head.
+Pointers use extra memory.
+Cache performance is worse than arrays.
+
+Basic operations
+
+Traversal: start at the head and move until NULL
+Insertion: at the beginning, at the end, or at a given position
+Deletion: remove a node and reconnect the pointers
+Search: check each node one by one
+
+Insert at beginning (example)
+
+cpp
+void insertAtHead(Node*& head, int value) {
+    Node* newNode = new Node{value, head};
+    head = newNode;
+}
